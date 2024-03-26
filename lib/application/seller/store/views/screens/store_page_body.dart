@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:projek_skripsi/application/seller/store/controllers/store_seller_controller.dart';
 import 'package:projek_skripsi/utils/routes.dart';
 import 'package:projek_skripsi/core/const/app_themes.dart';
 
@@ -93,7 +94,7 @@ class ContainerMenu extends StatelessWidget {
   }
 }
 
-class LogoutButton extends StatelessWidget {
+class LogoutButton extends GetView<StoreSellerController> {
   const LogoutButton({Key? key}) : super(key: key);
 
   @override
@@ -101,8 +102,7 @@ class LogoutButton extends StatelessWidget {
     return SizedBox(
       width: Get.size.width,
       child: ElevatedButton(
-        onPressed: () => Get.until((route) =>
-          Get.currentRoute == AppRoutes.sellerlogin),
+        onPressed: () => controller.logout(),
         style: ElevatedButton.styleFrom(
           elevation: 3,
           backgroundColor: AppThemes.red,

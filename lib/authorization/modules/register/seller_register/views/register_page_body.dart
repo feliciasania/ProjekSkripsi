@@ -10,72 +10,75 @@ class RegisterPageBody extends GetView<RegisterSellerController> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FormInputText(
-          title: 'Merchant Name',
-          txtcontroller: controller.fieldMerchantName,
-          textInputType: TextInputType.text,
-          txtLine: 1,
-          txtEnable: true,
-          txtReadonly: false,
-          mandatory: true,
-          validatorMsg: 'Merchant Name is required',
-        ),
-        FormInputText(
-          title: 'Email',
-          txtcontroller: controller.fieldMerchantName,
-          textInputType: TextInputType.emailAddress,
-          txtLine: 1,
-          txtEnable: true,
-          txtReadonly: false,
-          mandatory: true,
-          validatorMsg: 'Email is required',
-        ),
-        FormInputText(
-          title: 'Password',
-          txtcontroller: controller.fieldMerchantName,
-          textInputType: TextInputType.visiblePassword,
-          txtLine: 1,
-          txtEnable: true,
-          txtReadonly: false,
-          mandatory: true,
-          validatorMsg: 'Password is required',
-        ),
-        FormInputText(
-          title: 'Confirm Password',
-          txtcontroller: controller.fieldMerchantName,
-          textInputType: TextInputType.visiblePassword,
-          txtLine: 1,
-          txtEnable: true,
-          txtReadonly: false,
-          mandatory: true,
-          validatorMsg: 'Password is required',
-        ),
-        FormInputText(
-          title: 'Phone Number',
-          txtcontroller: controller.fieldMerchantName,
-          textInputType: TextInputType.phone,
-          txtLine: 1,
-          txtEnable: true,
-          txtReadonly: false,
-          mandatory: true,
-          validatorMsg: 'Phone Number is required',
-        ),
-        FormInputText(
-          title: 'Address',
-          txtcontroller: controller.fieldMerchantName,
-          textInputType: TextInputType.text,
-          txtLine: 5,
-          txtEnable: true,
-          txtReadonly: false,
-          mandatory: true,
-          validatorMsg: 'Password is required',
-        ),
-        const ImageForm(),
-        SizedBox(height: AppThemes().extraSpacing),
-        const RegisterButton()
-      ],
+    return Form(
+      key: controller.formkey,
+      child: Column(
+        children: [
+          FormInputText(
+            title: 'Merchant Name',
+            txtcontroller: controller.fieldName,
+            textInputType: TextInputType.text,
+            txtLine: 1,
+            txtEnable: true,
+            txtReadonly: false,
+            mandatory: true,
+            validatorMsg: 'Merchant Name is required',
+          ),
+          FormInputText(
+            title: 'Email',
+            txtcontroller: controller.fieldEmail,
+            textInputType: TextInputType.emailAddress,
+            txtLine: 1,
+            txtEnable: true,
+            txtReadonly: false,
+            mandatory: true,
+            validatorMsg: 'Email is required',
+          ),
+          FormInputText(
+            title: 'Password',
+            txtcontroller: controller.fieldPassword,
+            textInputType: TextInputType.visiblePassword,
+            txtLine: 1,
+            txtEnable: true,
+            txtReadonly: false,
+            mandatory: true,
+            validatorMsg: 'Password is required',
+          ),
+          FormInputText(
+            title: 'Confirm Password',
+            txtcontroller: controller.fieldConfirmPassword,
+            textInputType: TextInputType.visiblePassword,
+            txtLine: 1,
+            txtEnable: true,
+            txtReadonly: false,
+            mandatory: true,
+            validatorMsg: 'Password is required',
+          ),
+          FormInputText(
+            title: 'Phone Number',
+            txtcontroller: controller.fieldPhoneNumber,
+            textInputType: TextInputType.phone,
+            txtLine: 1,
+            txtEnable: true,
+            txtReadonly: false,
+            mandatory: true,
+            validatorMsg: 'Phone Number is required',
+          ),
+          FormInputText(
+            title: 'Address',
+            txtcontroller: controller.fieldAddress,
+            textInputType: TextInputType.text,
+            txtLine: 5,
+            txtEnable: true,
+            txtReadonly: false,
+            mandatory: true,
+            validatorMsg: 'Password is required',
+          ),
+          const ImageForm(),
+          SizedBox(height: AppThemes().extraSpacing),
+          const RegisterButton()
+        ],
+      ),
     );
   }
 }
@@ -141,7 +144,7 @@ class EmptyPhoto extends StatelessWidget {
   }
 }
 
-class RegisterButton extends StatelessWidget {
+class RegisterButton extends GetView<RegisterSellerController> {
   const RegisterButton({Key? key}) : super(key: key);
 
   @override
@@ -149,7 +152,7 @@ class RegisterButton extends StatelessWidget {
     return SizedBox(
       width: Get.size.width,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: () => controller.register(),
         style: ElevatedButton.styleFrom(
           elevation: 3,
           backgroundColor: AppThemes.blue,

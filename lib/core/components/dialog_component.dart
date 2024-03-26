@@ -1,7 +1,20 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
+import 'package:flutter/material.dart';
 
 class DialogComponent {
+  onShowLoading(){
+    return Center(
+        child: SizedBox(
+          height: Get.size.height * 0.2,
+          child: Lottie.asset(
+              'assets/lottie/loading.json',
+              repeat: true
+          ),
+        )
+    );
+  }
+
   onShowModalBottomSheet(Widget widget){
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
