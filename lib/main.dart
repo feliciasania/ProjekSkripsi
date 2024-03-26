@@ -1,16 +1,19 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:projek_skripsi/core/const/app_themes.dart';
-import 'package:projek_skripsi/utils/lang/localization.dart';
+import 'package:flutter/material.dart';
 import 'package:projek_skripsi/utils/pages.dart';
 import 'package:projek_skripsi/utils/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+import 'package:projek_skripsi/core/const/app_themes.dart';
+import 'package:projek_skripsi/utils/lang/localization.dart';
+
+void main() async {
   // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
   //     .then((_) {
   //   runApp(const MyApp());
   // });
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
