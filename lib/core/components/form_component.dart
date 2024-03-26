@@ -35,21 +35,21 @@ class FormInputText extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Padding(
-          //   padding: EdgeInsets.symmetric(vertical: 4.0),
-          //   child: Align(
-          //       alignment: Alignment.topLeft,
-          //       child: RichText(
-          //         text: TextSpan(
-          //           text: title,
-          //           style: TextStyle(color: Colors.black),
-          //           children: <TextSpan>[
-          //             TextSpan(text: mandatory ? '*' : '',
-          //                 style: TextStyle(color: Colors.red)),
-          //           ],
-          //         ),
-          //       )),
-          // ),
+          Padding(
+            padding: EdgeInsets.only(bottom: 4.0),
+            child: Align(
+                alignment: Alignment.topLeft,
+                child: RichText(
+                  text: TextSpan(
+                    text: title,
+                    style: TextStyle(color: Colors.black),
+                    children: <TextSpan>[
+                      TextSpan(text: mandatory ? '*' : '',
+                          style: TextStyle(color: Colors.red)),
+                    ],
+                  ),
+                )),
+          ),
           SizedBox(
             width: Get.size.width,
             child: TextFormField(
