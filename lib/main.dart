@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:projek_skripsi/authorization/modules/login/controllers/auth_controller.dart';
@@ -13,13 +14,12 @@ import 'package:projek_skripsi/core/const/app_themes.dart';
 import 'package:projek_skripsi/utils/lang/localization.dart';
 
 void main() async {
-  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-  //     .then((_) {
-  //   runApp(const MyApp());
-  // });
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
