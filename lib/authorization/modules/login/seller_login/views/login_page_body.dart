@@ -38,6 +38,12 @@ class LoginPageBody extends GetView<LoginSellerController> {
                 validatorMsg: 'Password is required',
                 controller: controller,
             ),
+            Obx(() => controller.errorMsg.value != '' ?
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(controller.errorMsg.value,
+                  style: AppThemes().text5(color: Colors.red)),
+                ) : SizedBox()),
             SizedBox(height: AppThemes().extraSpacing),
             GestureDetector(
                 onTap: () {},

@@ -21,17 +21,18 @@ class RegisterSellerController extends GetxController {
     if(formkey.currentState!.validate()){
       if(await authentication()) {
         saveToCloudFirestore();
-        // verification email
       }
     }
   }
 
   Future<bool> authentication() async {
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: fieldEmail.text,
-          password: fieldPassword.text
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+            email: fieldEmail.text,
+            password: fieldPassword.text
       );
+      await userCredential.user!.sendEmailVerification();
       return true;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -70,7 +71,8 @@ class RegisterSellerController extends GetxController {
         .then((value) =>
           Get.defaultDialog(
               title: 'Success',
-              middleText: 'User data has been successfully saved',
+              middleText: 'User data has been successfully saved. '
+                  'Please check email for verification',
               textConfirm:'Ok',
               onConfirm: () => Get.until((route) =>
                 Get.currentRoute == AppRoutes.sellerlogin)
@@ -83,6 +85,4 @@ class RegisterSellerController extends GetxController {
               onConfirm: () => Get.back()
           ));
   }
-
-
 }

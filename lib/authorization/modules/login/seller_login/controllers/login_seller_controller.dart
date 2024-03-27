@@ -9,6 +9,7 @@ class LoginSellerController extends GetxController {
   var formkey = GlobalKey<FormState>();
 
   var isHiddenPassword = true.obs;
+  var errorMsg = ''.obs;
 
   var fieldEmail = TextEditingController();
   var fieldPassword = TextEditingController();
@@ -16,21 +17,37 @@ class LoginSellerController extends GetxController {
   void login() async {
     if(formkey.currentState!.validate()){
       try {
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: fieldEmail.text,
-            password: fieldPassword.text
+        UserCredential userCredential = await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+              email: fieldEmail.text,
+              password: fieldPassword.text
         );
-        Get.offNamed(AppRoutes.sellerdashboard);
+        if(userCredential.user!.emailVerified){
+          Get.offNamed(AppRoutes.sellerdashboard);
+        } else {
+          Get.defaultDialog(
+              title: 'Warning',
+              middleText: 'User need verification email',
+              textConfirm:'Ok',
+              onConfirm: () async {
+                await userCredential.user!.sendEmailVerification();
+                Get.back();
+              },
+              textCancel: 'Cancel',
+          );
+          errorMsg.value = 'User need verification email';
+        }
       } on FirebaseAuthException catch (e) {
         log(e.code);
         if (e.code == 'user-not-found') {
-          print('No user found for that email.');
+          errorMsg.value = 'No user found for that email';
         } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
+          errorMsg.value = 'Wrong password provided for that user';
+        } else {
+          errorMsg.value = 'Wrong email / password';
         }
       }
     }
-
   }
 
 }

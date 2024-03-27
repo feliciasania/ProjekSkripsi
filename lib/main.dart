@@ -41,8 +41,8 @@ class MyApp extends StatelessWidget {
               backgroundColor: AppThemes.white,
             ),
 
-            initialRoute: snapshot.data == null ?
-              AppRoutes.onBoarding : AppRoutes.sellerdashboard,
+            initialRoute: snapshot.data != null && snapshot.data!.emailVerified ?
+              AppRoutes.sellerdashboard : AppRoutes.onBoarding,
             getPages: AppPages.pages,
 
             translations: Localization(),
