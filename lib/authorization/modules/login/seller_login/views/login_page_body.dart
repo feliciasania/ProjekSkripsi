@@ -17,7 +17,7 @@ class LoginPageBody extends GetView<LoginSellerController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            FormInputText(
+            FormInputEmail(
                 title: 'Email',
                 txtcontroller: controller.fieldEmail,
                 textInputType: TextInputType.emailAddress,
@@ -27,7 +27,7 @@ class LoginPageBody extends GetView<LoginSellerController> {
                 mandatory: true,
                 validatorMsg: 'Email is required',
             ),
-            FormInputText(
+            FormInputPassword(
                 title: 'Password',
                 txtcontroller: controller.fieldPassword,
                 textInputType: TextInputType.visiblePassword,
@@ -36,6 +36,7 @@ class LoginPageBody extends GetView<LoginSellerController> {
                 txtReadonly: false,
                 mandatory: true,
                 validatorMsg: 'Password is required',
+                controller: controller,
             ),
             SizedBox(height: AppThemes().extraSpacing),
             GestureDetector(

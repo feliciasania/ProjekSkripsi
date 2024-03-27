@@ -6,6 +6,8 @@ import 'package:projek_skripsi/utils/routes.dart';
 class RegisterSellerController extends GetxController {
   var formkey = GlobalKey<FormState>();
 
+  var isHiddenPassword = true.obs;
+
   var fieldName = TextEditingController();
   var fieldEmail = TextEditingController();
   var fieldPassword = TextEditingController();
@@ -15,20 +17,24 @@ class RegisterSellerController extends GetxController {
   var fieldTag = TextEditingController();
 
   void register() async {
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: fieldEmail.text,
-          password: fieldPassword.text
-      );
-      Get.offNamed(AppRoutes.sellerdashboard);
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-      } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
+    if(formkey.currentState!.validate()){
+      // save to cloud firebase
+      // verification email
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: fieldEmail.text,
+            password: fieldPassword.text
+        );
+        Get.offNamed(AppRoutes.sellerdashboard);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          print('The password provided is too weak.');
+        } else if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email.');
+        }
+      } catch (e) {
+        print(e);
       }
-    } catch (e) {
-      print(e);
     }
   }
 

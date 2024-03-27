@@ -24,7 +24,7 @@ class RegisterPageBody extends GetView<RegisterSellerController> {
             mandatory: true,
             validatorMsg: 'Merchant Name is required',
           ),
-          FormInputText(
+          FormInputEmail(
             title: 'Email',
             txtcontroller: controller.fieldEmail,
             textInputType: TextInputType.emailAddress,
@@ -34,7 +34,7 @@ class RegisterPageBody extends GetView<RegisterSellerController> {
             mandatory: true,
             validatorMsg: 'Email is required',
           ),
-          FormInputText(
+          FormInputPassword(
             title: 'Password',
             txtcontroller: controller.fieldPassword,
             textInputType: TextInputType.visiblePassword,
@@ -43,8 +43,9 @@ class RegisterPageBody extends GetView<RegisterSellerController> {
             txtReadonly: false,
             mandatory: true,
             validatorMsg: 'Password is required',
+            controller: controller,
           ),
-          FormInputText(
+          FormInputPassword(
             title: 'Confirm Password',
             txtcontroller: controller.fieldConfirmPassword,
             textInputType: TextInputType.visiblePassword,
@@ -52,7 +53,8 @@ class RegisterPageBody extends GetView<RegisterSellerController> {
             txtEnable: true,
             txtReadonly: false,
             mandatory: true,
-            validatorMsg: 'Password is required',
+            validatorMsg: 'Confirm Password is required',
+            controller: controller,
           ),
           FormInputText(
             title: 'Phone Number',
