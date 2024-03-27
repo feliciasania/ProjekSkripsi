@@ -11,18 +11,20 @@ class BoardingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppThemes.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-              width: Get.size.width,
-              height: Get.size.height * .7,
-              child: const BoardingHeader()),
-          SizedBox(
-              width: Get.size.width,
-              height: Get.size.height * .3,
-              child: const BoardingBody()),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+                width: Get.size.width,
+                height: Get.size.height * .7,
+                child: const BoardingHeader()),
+            SizedBox(
+                width: Get.size.width,
+                height: Get.size.height * .3,
+                child: const BoardingBody()),
+          ],
+        ),
       ),
     );
   }
