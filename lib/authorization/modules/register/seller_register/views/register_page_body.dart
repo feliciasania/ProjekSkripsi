@@ -45,7 +45,7 @@ class RegisterPageBody extends GetView<RegisterSellerController> {
             validatorMsg: 'Password is required',
             controller: controller,
           ),
-          FormInputPassword(
+          FormInputConfirmPassword(
             title: 'Confirm Password',
             txtcontroller: controller.fieldConfirmPassword,
             textInputType: TextInputType.visiblePassword,
